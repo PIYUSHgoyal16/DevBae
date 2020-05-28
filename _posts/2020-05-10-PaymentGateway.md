@@ -117,7 +117,7 @@ interface.</li>
 <li>At the end of the day, the transaction is settled, wherein the issuing bank gives the
 funds to the acquiring bank through the card scheme network.</li>
 <li>The acquiring bank transfers the funds to the merchant’s account.</li>
-Thus, if the merchant server is hacked, the information has no value. The original
+<li>Thus, if the merchant server is hacked, the information has no value. The original
 information is outside all the back and forth in a secured data vault.</li>
 </ol>
 
