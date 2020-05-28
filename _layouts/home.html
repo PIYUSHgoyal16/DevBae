@@ -1,0 +1,84 @@
+---
+layout: default
+---
+
+<!-- Page Header -->
+{% if page.background %}
+<header class="masthead" style="background-image: url('{{ page.background | prepend: site.baseurl | replace: '//', '/' }}')">
+{% elsif page.bg_url %}
+  <header class="masthead" style="background-image: url('{{ page.bg_url }}')">
+  {% else %}
+  <header class="masthead" style="background-image: url('/img/posts/06.jpg')">
+    {% endif %}
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>{{ site.title }}</h1>
+            {% if site.description %}
+            <span class="subheading">{{ site.description }}</span>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        {{ content }}
+
+        <!-- Home Post List -->
+        
+        {% for post in site.posts reversed %}
+          {% if post.tags contains 'home' %}
+            <article class="post-preview">
+              <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">
+                <h2 class="post-title">{% if post.home_title %}{{ post.home_title }}{% else %}{{ post.title }}{% endif %}</h2>
+                {% if post.subtitle or post.home_subtitle %}
+                <h3 class="post-subtitle">{% if post.home_subtitle %}{{ post.home_subtitle }}{% else %}{{ post.subtitle }}{% endif %}</h3>
+                {% else %}
+                <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
+                {% endif %}
+              </a>
+
+              {% if post.author %}
+                {% assign authors = post.author %}
+              {% else %}
+                {% assign authors = site.author %}
+              {% endif %}
+
+              <p class="meta">Posted by
+                {% if authors.first %}
+                  {% for author in authors %}
+                    {% if post.author_url[forloop.index0] %}
+                      <a target="_blank" href="{{ post.author_url[forloop.index0] }}">{{ author }}</a>{% unless forloop.last %},{% endunless %} 
+                    {% else %}
+                      {{ author }}{% unless forloop.last %},{% endunless %}
+                    {% endif %}
+                  {% endfor %}
+                {% else %}
+                  {% if post.author_url %}
+                    <a target="_blank" href="{{ post.author_url }}">{{ authors }}</a>
+                  {% else %}
+                    {{ authors }}
+                  {% endif %}
+                {% endif %}
+                on {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}            
+              </p>
+            </article>
+            <hr>
+            {% endif %}
+        {% endfor %}
+
+        <!-- Pager -->
+        <div class="clearfix">
+          <a class="btn btn-primary float-right" href="{{"/posts" | relative_url }}">View All Posts &rarr;</a>
+        </div>
+
+      </div>
+    </div>
+  </div>

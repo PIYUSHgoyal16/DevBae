@@ -1,0 +1,30 @@
+// .highlighter-rouge {
+//   color: #ce887b;
+//   font-weight: 400;
+//   border: 1px solid #607D8B;
+//   -webkit-border-radius: 3px;
+//   border-radius: 3px;
+//   padding: 0.1rem 0.5rem;
+// }
+
+
+img[alt$=">"] {
+  float: right;
+}
+
+img[alt$="<"] {
+  float: left;
+}
+
+img[alt$="><"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    /* 64px navbar + 20px for spacing */
+    scroll-margin-top: 84px;
+}
